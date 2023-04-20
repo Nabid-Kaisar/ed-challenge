@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express';
-import {SERVER_PORT} from "../../constants/CONSTANTS";
-import {DUMMY_RESPONSE} from "../../constants/DUMMY_RESPONSE";
+import {SERVER_PORT} from "./constants/CONSTANTS";
+import {DUMMY_RESPONSE} from "./constants/DUMMY_RESPONSE";
 
 const app = express();
 const port: number = SERVER_PORT;
