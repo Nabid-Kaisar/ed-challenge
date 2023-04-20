@@ -1,8 +1,9 @@
 import {DATE_FORMAT} from "./DateType";
+import {IATA} from "./IATAType";
 
-interface PromotionsPriceOffersResponse{
-    origin: string; //3 letter IATA City Code
-    destination: string; //3 letter IATA City Code
+export interface PromotionsPriceOffersResponse{
+    origin: IATA; //3 letter IATA City Code
+    destination: IATA; //3 letter IATA City Code
     departureDate: DATE_FORMAT;
     returnDate: DATE_FORMAT;
     seatAvailability: number;
@@ -15,4 +16,3 @@ interface Price{
     amount: number;
     currency: string;
 }
-
