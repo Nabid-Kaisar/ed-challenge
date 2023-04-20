@@ -7,9 +7,9 @@ import {IATA} from "../models/IATAType";
 function FlightSearchingApp({promotionsPrices, handleCallPromotionPricesApi}: PromotionsPricesProps){
     console.log(promotionsPrices)
     return (
-        <>
+        <section>
             <FlightSelectionForm handleCallPromotionPricesApi={handleCallPromotionPricesApi}/>
-        </>
+        </section>
     );
 }
 

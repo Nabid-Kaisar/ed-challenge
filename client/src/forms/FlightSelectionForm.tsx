@@ -1,6 +1,7 @@
-import React, {ChangeEvent, useState} from "react";
+import React, { ChangeEvent, useState } from "react";
 import styled from "styled-components";
-import {IATA} from "../models/IATAType";
+import { IATA } from "../models/IATAType";
+import Input from "../components/common/Input";
 
 const FormContainer = styled.div`
   display: flex;
@@ -86,50 +87,57 @@ const SubmitButton = styled.button`
   }
 `;
 
-const FlightSelectionForm = ({handleCallPromotionPricesApi}: FlightSelectionFormProps) => {
-    const [origin, setOrigin] = useState("");
-    const [destination, setDestination] = useState("");
+const FlightSelectionForm = ({
+  handleCallPromotionPricesApi,
+}: FlightSelectionFormProps) => {
+  const [origin, setOrigin] = useState("");
+  const [destination, setDestination] = useState("");
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        console.log("Origin:", origin);
-        console.log("Destination:", destination);
-        handleCallPromotionPricesApi(origin as IATA, destination as IATA);
-    };
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    console.log("Origin:", origin);
+    console.log("Destination:", destination);
+    handleCallPromotionPricesApi(origin as IATA, destination as IATA);
+  };
 
-    return (
-        <FormContainer>
-            <form onSubmit={handleSubmit}>
-                <InputContainer>
-                    <InputLabel htmlFor="origin">Origin</InputLabel>
-                    <InputField
-                        type="text"
-                        id="origin"
-                        name="origin"
-                        value={origin}
-                        onChange={(event: ChangeEvent<HTMLInputElement>) => setOrigin(event.target.value)}
-                        required
-                    />
-                </InputContainer>
-                <InputContainer>
-                    <InputLabel htmlFor="destination">Destination</InputLabel>
-                    <InputField
-                        type="text"
-                        id="destination"
-                        name="destination"
-                        value={destination}
-                        onChange={(event) => setDestination(event.target.value)}
-                        required
-                    />
-                </InputContainer>
-                <SubmitButton type="submit">Search Flights</SubmitButton>
-            </form>
-        </FormContainer>
-    );
+  return (
+    <div className="form-container">
+      <form onSubmit={handleSubmit}>
+        <div>
+          <Input
+            label={"Origin"}
+            type="text"
+            id="origin"
+            name="origin"
+            value={origin}
+            onChange={(event: ChangeEvent<HTMLInputElement>) =>
+              setOrigin(event.target.value)
+            }
+            required
+          />
+        </div>
+        <div>
+          <Input
+            label={"Destination"}
+            type="text"
+            id="destination"
+            name="destination"
+            value={destination}
+            onChange={(event: any) => setDestination(event.target.value)}
+            required
+          />
+        </div>
+        <button type="submit">Search Flights</button>
+      </form>
+    </div>
+  );
 };
 
 export default FlightSelectionForm;
 
-interface FlightSelectionFormProps{
-    handleCallPromotionPricesApi: (origin: IATA, destination: IATA) => Promise<void>;
+interface FlightSelectionFormProps {
+  handleCallPromotionPricesApi: (
+    origin: IATA,
+    destination: IATA
+  ) => Promise<void>;
 }
