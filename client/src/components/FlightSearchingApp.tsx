@@ -5,10 +5,10 @@ import {PromotionsPriceOffersResponse} from "../models/PromotionsPriceOffersResp
 import {IATA} from "../models/IATAType";
 
 function FlightSearchingApp({promotionsPrices, handleCallPromotionPricesApi}: PromotionsPricesProps){
+    console.log(promotionsPrices)
     return (
         <>
             <FlightSelectionForm handleCallPromotionPricesApi={handleCallPromotionPricesApi}/>
-            {promotionsPrices }
         </>
     );
 }
