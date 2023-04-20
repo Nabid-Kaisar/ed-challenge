@@ -1,29 +1,46 @@
-import React, { useEffect } from "react";
-import { PromotionsPriceOffersResponse } from "../models/PromotionsPriceOffersResponse";
-import { IATA } from "../models/IATAType";
+import React, { useEffect, useState } from 'react'
+import { PromotionsPriceOffersResponse } from '../models/PromotionsPriceOffersResponse'
+import { IATA } from '../models/IATAType'
 
 function FlightDetails({ details, origin, destination }: FlightDetailsProps) {
-  const filtrationProcess = () => {
-    console.log(details);
-  };
+    console.log('details list::', details)
+    const [filteredData, setFilteredData] = useState<Array<PromotionsPriceOffersResponse>>([])
 
-  useEffect(() => {
-    filtrationProcess();
-  }, [origin, destination, details]);
+    const filtrationProcess = () => {
+        if (!details) {
+            setFilteredData([])
+            return
+        }
 
-  if (!details) return null;
+        setFilteredData(details.filter((flight) => flight.origin === origin && flight.destination === destination))
+    }
 
-  return (
-    <>
-      <h2>{details[0].price.amount}</h2>
-    </>
-  );
+    useEffect(() => {
+        filtrationProcess()
+    }, [origin, destination, details])
+
+    if (!details) return null
+
+    return (
+        <>
+            {filteredData.map((data) => (
+                <>
+                    <ul>
+                        <li>{data.price.amount + ' ' + data.price.currency}</li>
+                        <li>{data.seatAvailability}</li>
+                        <li>{data.departureDate}</li>
+                        <li>{data.returnDate}</li>
+                    </ul>
+                </>
+            ))}
+        </>
+    )
 }
 
-export default FlightDetails;
+export default FlightDetails
 
 interface FlightDetailsProps {
-  details: Array<PromotionsPriceOffersResponse> | null;
-  origin: IATA;
-  destination: IATA;
+    details: Array<PromotionsPriceOffersResponse> | null
+    origin: IATA
+    destination: IATA
 }
