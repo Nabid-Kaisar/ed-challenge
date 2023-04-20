@@ -1,28 +1,28 @@
 import React, { useState } from "react";
-import FlightSearchingApp from "./components/FlightSearchingApp";
 import "./styles/App.css";
+import FlightSearchingAppMainContent from "./components/FlightSearchingAppMainContent";
 import { getPromotionsPrices } from "./apis/PromotionsPriceApi";
 import { IATA } from "./models/IATAType";
 
-function App() {
-  const [promotionsPrices, setPromotionsPrices] = useState(null);
+function FlightSearchingApp() {
+  const [flightDetails, setFlightDetails] = useState(null);
 
   const handleCallPromotionPricesApi = async (
     origin: IATA,
     destination: IATA
   ) => {
     const result = await getPromotionsPrices(origin, destination);
-    setPromotionsPrices(result.data);
+    setFlightDetails(result.data);
   };
 
   return (
     <main>
-      <FlightSearchingApp
+      <FlightSearchingAppMainContent
         handleCallPromotionPricesApi={handleCallPromotionPricesApi}
-        promotionsPrices={promotionsPrices}
+        flightDetails={flightDetails}
       />
     </main>
   );
 }
 
-export default App;
+export default FlightSearchingApp;
