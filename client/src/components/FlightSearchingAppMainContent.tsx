@@ -5,7 +5,7 @@ import { PromotionsPriceOffersResponse } from '../models/PromotionsPriceOffersRe
 import { IATA } from '../models/IATAType'
 import FlightDetails from './FlightDetails'
 
-function FlightSearchingAppMainContent({ flightDetails, handleCallPromotionPricesApi }: PromotionsPricesProps) {
+function FlightSearchingAppMainContent({ filteredFlightData, handleCallPromotionPricesApi }: PromotionsPricesProps) {
     const [origin, setOrigin] = useState('')
     const [destination, setDestination] = useState('')
 
@@ -22,7 +22,7 @@ function FlightSearchingAppMainContent({ flightDetails, handleCallPromotionPrice
                 />
             </section>
             <section>
-                <FlightDetails details={flightDetails} origin={origin as IATA} destination={destination as IATA} />
+                <FlightDetails details={filteredFlightData} />
             </section>
         </>
     )
@@ -31,6 +31,6 @@ function FlightSearchingAppMainContent({ flightDetails, handleCallPromotionPrice
 export default FlightSearchingAppMainContent
 
 interface PromotionsPricesProps {
-    flightDetails: Array<PromotionsPriceOffersResponse> | null
+    filteredFlightData: Array<PromotionsPriceOffersResponse> | null
     handleCallPromotionPricesApi: (origin: IATA, destination: IATA) => Promise<void>
 }
