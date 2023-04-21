@@ -1,6 +1,7 @@
 import React, { ChangeEvent, useState } from 'react'
 import { IATA } from '../models/IATAType'
 import Input from '../components/common/Input'
+import { IATA_STRING_LENGTH } from '../constants/CONSTANTS'
 
 const FlightSelectionForm = ({
     handleCallPromotionPricesApi,
@@ -30,6 +31,7 @@ const FlightSelectionForm = ({
                         value={origin}
                         onChange={(event: ChangeEvent<HTMLInputElement>) => setOrigin(event.target.value)}
                         required
+                        maxlength={IATA_STRING_LENGTH}
                     />
                 </div>
                 <div>
@@ -39,8 +41,9 @@ const FlightSelectionForm = ({
                         id="destination"
                         name="destination"
                         value={destination}
-                        onChange={(event: any) => setDestination(event.target.value)}
+                        onChange={(event: ChangeEvent<HTMLInputElement>) => setDestination(event.target.value)}
                         required
+                        maxlength={IATA_STRING_LENGTH}
                     />
                 </div>
                 <button disabled={isSubmitting} className="submit-button" type="submit">
@@ -56,7 +59,7 @@ export default FlightSelectionForm
 interface FlightSelectionFormProps {
     handleCallPromotionPricesApi: (origin: IATA, destination: IATA) => Promise<void>
     origin: IATA
-    setOrigin: (value: ((prevState: string) => string) | string) => void
+    setOrigin: (value: string) => void
     destination: IATA
-    setDestination: (value: ((prevState: string) => string) | string) => void
+    setDestination: (value: string) => void
 }

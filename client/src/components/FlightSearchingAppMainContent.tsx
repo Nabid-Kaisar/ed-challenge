@@ -4,10 +4,27 @@ import FlightSelectionForm from '../forms/FlightSelectionForm'
 import { PromotionsPriceOffersResponse } from '../models/PromotionsPriceOffersResponse'
 import { IATA } from '../models/IATAType'
 import FlightDetails from './FlightDetails'
+import { isAlphaChars } from '../util/utils'
 
 function FlightSearchingAppMainContent({ filteredFlightData, handleCallPromotionPricesApi }: PromotionsPricesProps) {
     const [origin, setOrigin] = useState('')
     const [destination, setDestination] = useState('')
+
+    const handleSetOrigin = (value: string) => {
+        if (isAlphaChars(value)) {
+            setOrigin(value.toUpperCase())
+        } else {
+            //show errors;
+        }
+    }
+
+    const handleSetDestination = (value: string) => {
+        if (isAlphaChars(value)) {
+            setDestination(value.toUpperCase())
+        } else {
+            //show errors;
+        }
+    }
 
     return (
         <>
@@ -16,9 +33,9 @@ function FlightSearchingAppMainContent({ filteredFlightData, handleCallPromotion
                 <FlightSelectionForm
                     handleCallPromotionPricesApi={handleCallPromotionPricesApi}
                     origin={origin as IATA}
-                    setOrigin={setOrigin}
+                    setOrigin={handleSetOrigin}
                     destination={destination as IATA}
-                    setDestination={setDestination}
+                    setDestination={handleSetDestination}
                 />
             </section>
             <section>

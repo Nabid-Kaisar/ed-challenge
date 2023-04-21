@@ -1,6 +1,6 @@
-import React from 'react';
+import React from 'react'
 
-const Input = ({ label, value, onChange, error }:any) => {
+const Input = ({ label, value, onChange, error, ...props }: any) => {
     return (
         <div className="input-container">
             <label htmlFor={label} className="label">
@@ -12,10 +12,11 @@ const Input = ({ label, value, onChange, error }:any) => {
                 value={value}
                 onChange={onChange}
                 className={`input ${error ? 'error' : ''}`}
+                {...props}
             />
             {error && <span className="error-message">{error}</span>}
         </div>
-    );
-};
+    )
+}
 
-export default Input;
+export default Input
