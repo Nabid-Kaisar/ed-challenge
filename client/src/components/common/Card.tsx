@@ -7,6 +7,7 @@ const Card: React.FC<CardProps> = ({ origin, destination, departureDate, returnD
             <div className="od-date-container">
                 <div className="origin-dest-container ">
                     <span className="od-value">{origin}</span>
+                    <span className="horizontal-line"> </span>
                     <span className="od-value">{destination}</span>
                 </div>
                 <div className="date-container ">
