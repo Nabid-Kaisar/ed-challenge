@@ -1,0 +1,57 @@
+.card-container {
+    border-radius: 8px;
+    border: 1px solid #dcdcdc;
+    margin: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 45%;
+    background: white;
+}
+
+.origin-dest-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+    width: 50%;
+}
+
+.date-container {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    justify-content: space-between;
+    width: 50%;
+}
+
+.date-label {
+    font-size: 14px;
+    color: #808080;
+}
+
+.date-value {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.price-container {
+    margin-top: 16px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.seat-availability-container {
+    margin-top: 8px;
+    font-size: 14px;
+    color: #808080;
+}
+
+.od-date-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
