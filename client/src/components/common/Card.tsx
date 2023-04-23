@@ -11,13 +11,13 @@ const Card: React.FC<CardProps> = ({ origin, destination, departureDate, returnD
                 <div className="origin-dest-container ">
                     <span className="od-value">
                         <img src={airplane_takeoff} style={styles.icons} />
-                        {origin}
+                        <span className="city-code">{origin}</span>
                     </span>
                     <div className="horizontal-line"> </div>
 
                     <span className="od-value">
                         <img src={airplane_landing} style={styles.icons} />
-                        {destination}
+                        <span className="city-code">{destination}</span>
                     </span>
                 </div>
                 <div className="date-container ">

@@ -16,6 +16,11 @@
     align-items: center;
     justify-content: left;
     width: 45%;
+    min-width: 160px;
+    max-width: 190px;
+}
+
+.city-code {
 }
 
 .date-container {
