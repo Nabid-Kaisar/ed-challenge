@@ -2,6 +2,7 @@ import React from 'react'
 import { IATA } from '../../models/IATAType'
 import airplane_landing from '../../resources/icons/airplane_land.png'
 import airplane_takeoff from '../../resources/icons/airplane_up.png'
+import { convertSvrDateToUiDate } from '../../util/utils'
 
 const Card: React.FC<CardProps> = ({ origin, destination, departureDate, returnDate, price, seatAvailability }) => {
     return (
@@ -20,10 +21,10 @@ const Card: React.FC<CardProps> = ({ origin, destination, departureDate, returnD
                     </span>
                 </div>
                 <div className="date-container ">
-                    <span className="date-label">Departure Date:</span>
-                    <span className="date-value">{departureDate}</span>
-                    <span className="date-label">Return Date:</span>
-                    <span className="date-value">{returnDate}</span>
+                    <span className="date-label">Departure Date</span>
+                    <span className="date-value">{convertSvrDateToUiDate(departureDate)}</span>
+                    <span className="date-label">Return Date</span>
+                    <span className="date-value">{convertSvrDateToUiDate(returnDate)}</span>
                 </div>
             </div>
 

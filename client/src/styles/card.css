@@ -15,7 +15,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: left;
-    width: 50%;
+    width: 45%;
 }
 
 .date-container {
@@ -23,16 +23,18 @@
     flex-direction: column;
     align-items: end;
     justify-content: space-between;
+    text-align: right;
     width: 50%;
 }
 
 .date-label {
-    font-size: 14px;
+    font-size: 12px;
+    font-style: italic;
     color: var(--color-label-txt);
 }
 
 .date-value {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold;
     margin-bottom: 10px;
     color: var(--color-val-txt);
@@ -42,11 +44,13 @@
     margin-top: 16px;
     font-size: 24px;
     font-weight: bold;
+    color: var(--color-val-txt);
 }
 
 .seat-availability-container {
     margin-top: 8px;
     font-size: 14px;
+    font-style: italic;
     color: var(--color-light-val-txt);
 }
 
@@ -72,7 +76,7 @@
 }
 
 .od-value {
-    color: #003580;
+    color: var(--color-val-txt);
     text-align: center;
     font-weight: bold;
 }
