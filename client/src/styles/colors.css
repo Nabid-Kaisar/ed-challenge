@@ -1,0 +1,14 @@
+:root {
+    --color-primary: #003580;
+    --color-secondary: #0071c2;
+    --color-white: #fff;
+    --color-hover: #005fa3;
+    --color-gray-bg: #d9d9d9;
+    --color-label-txt: #808080;
+    --color-val-txt: #525252;
+    --color-light-val-txt: #808080;
+    --color-line-divider: #8596a3;
+    --color-thin-divider: #8d878729;
+    --color-error-txt: #ff3b30;
+    --color-input-focus: #007aff;
+}

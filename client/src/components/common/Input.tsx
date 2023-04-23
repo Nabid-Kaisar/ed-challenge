@@ -14,6 +14,9 @@ const Input = ({ label, value, onChange, error, ...props }: any) => {
                 className={`input ${error ? 'error' : ''}`}
                 {...props}
             />
+            {/*on this specific flight searching instance, this component did not need to show this error message.
+               but it is good to have this for future implementation.
+            */}
             {error && <span className="error-message">{error}</span>}
         </div>
     )

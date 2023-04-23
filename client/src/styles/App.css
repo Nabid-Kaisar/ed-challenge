@@ -1,6 +1,7 @@
-@import "base.css";
-@import "form.css";
-@import "input.css";
-@import "button.css";
-@import "header.css";
-@import "card.css";
+@import 'colors.css';
+@import 'base.css';
+@import 'form.css';
+@import 'input.css';
+@import 'button.css';
+@import 'header.css';
+@import 'card.css';

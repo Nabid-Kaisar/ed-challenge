@@ -28,12 +28,14 @@
 
 .date-label {
     font-size: 14px;
-    color: #808080;
+    color: var(--color-label-txt);
 }
 
 .date-value {
     font-size: 16px;
     font-weight: bold;
+    margin-bottom: 10px;
+    color: var(--color-val-txt);
 }
 
 .price-container {
@@ -45,7 +47,7 @@
 .seat-availability-container {
     margin-top: 8px;
     font-size: 14px;
-    color: #808080;
+    color: var(--color-light-val-txt);
 }
 
 .od-date-container {
@@ -62,11 +64,17 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #8596a3;
+    background-color: var(--color-line-divider);
 }
 
 .flight-details-container {
     display: block;
+}
+
+.od-value {
+    color: #003580;
+    text-align: center;
+    font-weight: bold;
 }
 
 @media only screen and (min-width: 600px) {
