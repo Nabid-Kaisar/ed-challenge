@@ -9,8 +9,9 @@ function FlightDetails({ details }: FlightDetailsProps) {
 
     return (
         <div className="flight-details-container">
-            {details.map((data) => (
+            {details.map((data, index) => (
                 <Card
+                    key={index}
                     origin={data.origin}
                     destination={data.destination}
                     departureDate={data.departureDate}

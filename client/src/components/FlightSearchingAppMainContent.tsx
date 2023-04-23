@@ -28,7 +28,7 @@ function FlightSearchingAppMainContent({ filteredFlightData, handleCallPromotion
 
     return (
         <>
-            <header className="main-header">Find the Best Flight Options For Your Travel</header>
+            <header className="main-header thin-divider">Find the Best Flights For Your Travel!</header>
             <section>
                 <FlightSelectionForm
                     handleCallPromotionPricesApi={handleCallPromotionPricesApi}

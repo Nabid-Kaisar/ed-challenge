@@ -6,3 +6,7 @@
     background: #003580;
     color: white;
 }
+
+.thin-divider {
+    border-bottom: 1px solid #8d878729;
+}
