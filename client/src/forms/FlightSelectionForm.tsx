@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react'
+import React, { ChangeEvent, useEffect, useRef, useState } from 'react'
 import { IATA } from '../models/IATAType'
 import Input from '../components/common/Input'
 import { IATA_STRING_LENGTH } from '../constants/CONSTANTS'
@@ -12,6 +12,7 @@ const FlightSelectionForm = ({
     setDestination,
 }: FlightSelectionFormProps) => {
     const [isSubmitting, setIsSubmitting] = useState(false)
+    const firstInpRef = useRef<HTMLInputElement>(null)
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
         if (!isValidFlightForm(origin, destination)) return
@@ -22,13 +23,17 @@ const FlightSelectionForm = ({
             .catch((err) => setIsSubmitting(false))
     }
 
+    useEffect(() => {
+        firstInpRef.current?.focus()
+    }, [])
+
     return (
         <div className="form-container">
             <form onSubmit={handleSubmit}>
                 <div>
                     <Input
+                        ref={firstInpRef}
                         label={'Origin'}
-                        type="text"
                         id={'origin'}
                         name="origin"
                         value={origin}
@@ -41,7 +46,6 @@ const FlightSelectionForm = ({
                 <div>
                     <Input
                         label={'Destination'}
-                        type="text"
                         id={'destination'}
                         name="destination"
                         value={destination}
