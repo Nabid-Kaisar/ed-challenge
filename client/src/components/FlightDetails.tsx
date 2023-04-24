@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { PromotionsPriceOffersResponse } from '../models/PromotionsPriceOffersResponse'
-import { IATA } from '../models/IATAType'
 import Card from './common/Card'
 
 function FlightDetails({ details }: FlightDetailsProps) {
+    console.log('filteredFlightData::', details)
     if (!details) return null
 
     return (

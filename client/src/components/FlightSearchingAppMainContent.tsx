@@ -1,28 +1,35 @@
-import React, { useState } from 'react'
-
+import React, { Dispatch, SetStateAction, useState } from 'react'
 import FlightSelectionForm from '../forms/FlightSelectionForm'
 import { PromotionsPriceOffersResponse } from '../models/PromotionsPriceOffersResponse'
 import { IATA } from '../models/IATAType'
 import FlightDetails from './FlightDetails'
 import { isAlphaChars } from '../util/utils'
+import Select from './common/Select'
+import { filterCriteria } from '../constants/CONSTANTS'
 
-function FlightSearchingAppMainContent({ filteredFlightData, handleCallPromotionPricesApi }: PromotionsPricesProps) {
+const { DEFAULT, PRICE } = filterCriteria
+const options = [
+    { value: DEFAULT, label: 'Sort By' },
+    { value: PRICE, label: 'Price' },
+]
+function FlightSearchingAppMainContent({
+    filteredFlightData,
+    handleCallPromotionPricesApi,
+    sortBy,
+    setSortBy,
+}: PromotionsPricesProps) {
     const [origin, setOrigin] = useState('')
     const [destination, setDestination] = useState('')
 
     const handleSetOrigin = (value: string) => {
         if (isAlphaChars(value)) {
             setOrigin(value.toUpperCase())
-        } else {
-            //show errors;
         }
     }
 
     const handleSetDestination = (value: string) => {
         if (isAlphaChars(value)) {
             setDestination(value.toUpperCase())
-        } else {
-            //show errors;
         }
     }
 
@@ -39,6 +46,16 @@ function FlightSearchingAppMainContent({ filteredFlightData, handleCallPromotion
                 />
             </section>
             <section>
+                <Select
+                    options={options}
+                    value={sortBy}
+                    onChange={(e: Event) => {
+                        setSortBy((e.target as HTMLSelectElement).value)
+                    }}
+                />
+            </section>
+
+            <section>
                 <FlightDetails details={filteredFlightData} />
             </section>
         </>
@@ -50,4 +67,6 @@ export default FlightSearchingAppMainContent
 interface PromotionsPricesProps {
     filteredFlightData: Array<PromotionsPriceOffersResponse> | null
     handleCallPromotionPricesApi: (origin: IATA, destination: IATA) => Promise<void>
+    sortBy: string
+    setSortBy: Dispatch<SetStateAction<string>>
 }
