@@ -4,10 +4,12 @@ import FlightSearchingAppMainContent from './components/FlightSearchingAppMainCo
 import { getPromotionsPrices } from './apis/PromotionsPriceApi'
 import { IATA } from './models/IATAType'
 import { PromotionsPriceOffersResponse } from './models/PromotionsPriceOffersResponse'
+import Loader from './components/common/Loader'
 
 function FlightSearchingApp() {
-    const [flightDetails, setFlightDetails] = useState(null)
     const [filteredFlightData, setFilteredFlightData] = useState<Array<PromotionsPriceOffersResponse>>([])
+    const [showLoader, setShowLoader] = useState(false)
+
     const filtrationProcess = (details: Array<PromotionsPriceOffersResponse>, origin: IATA, destination: IATA) => {
         if (!details) {
             setFilteredFlightData([])
@@ -19,17 +21,24 @@ function FlightSearchingApp() {
         )
     }
     const handleCallPromotionPricesApi = async (origin: IATA, destination: IATA) => {
+        setShowLoader(true)
+        setFilteredFlightData([])
         const result = await getPromotionsPrices(origin, destination)
+        setShowLoader(false)
+
         filtrationProcess(result.data, origin, destination)
     }
 
     return (
-        <main>
-            <FlightSearchingAppMainContent
-                handleCallPromotionPricesApi={handleCallPromotionPricesApi}
-                filteredFlightData={filteredFlightData}
-            />
-        </main>
+        <>
+            <main>
+                <FlightSearchingAppMainContent
+                    handleCallPromotionPricesApi={handleCallPromotionPricesApi}
+                    filteredFlightData={filteredFlightData}
+                />
+            </main>
+            {showLoader ? <Loader /> : null}
+        </>
     )
 }
 
