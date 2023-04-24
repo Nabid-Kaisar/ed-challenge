@@ -1,0 +1,41 @@
+[
+  {
+    "origin": "EWR",
+    "destination": "SFO",
+    "departureDate": "2023-12-05",
+    "returnDate": "2023-12-12",
+    "seatAvailability": 6,
+    "price": {
+      "amount": 250,
+      "currency": "USD"
+    },
+    "offerType": "ExactMatch",
+    "uuid": "SA00038-8d23c0bf-7cde-4f27-b1a2-1d4f4f9c9cc4"
+  },
+  {
+    "origin": "EWR",
+    "destination": "SFO",
+    "departureDate": "2023-12-05",
+    "returnDate": "2023-12-12",
+    "seatAvailability": 9,
+    "price": {
+      "amount": 240,
+      "currency": "USD"
+    },
+    "offerType": "ExactMatch",
+    "uuid": "SA00039-8d23c0bf-7cde-4f27-b1a2-1d4f4f9c9crt5"
+  },
+  {
+    "origin": "EWR",
+    "destination": "SFO",
+    "departureDate": "2023-12-05",
+    "returnDate": "2023-12-12",
+    "seatAvailability": 10,
+    "price": {
+      "amount": 270,
+      "currency": "USD"
+    },
+    "offerType": "ExactMatch",
+    "uuid": "SA00048-8d23c0bf-7cde-4f27-b1a2-1d4f9c9cook91"
+  }
+]

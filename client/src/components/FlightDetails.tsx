@@ -17,6 +17,7 @@ function FlightDetails({ details }: FlightDetailsProps) {
                     returnDate={data.returnDate}
                     price={data.price.amount + ' ' + data.price.currency}
                     seatAvailability={data.seatAvailability}
+                    index={index}
                 />
             ))}
         </div>

@@ -4,9 +4,17 @@ import airplane_landing from '../../resources/icons/airplane_land.png'
 import airplane_takeoff from '../../resources/icons/airplane_up.png'
 import { convertSvrDateToUiDate } from '../../util/utils'
 
-const Card: React.FC<CardProps> = ({ origin, destination, departureDate, returnDate, price, seatAvailability }) => {
+const Card: React.FC<CardProps> = ({
+    index,
+    origin,
+    destination,
+    departureDate,
+    returnDate,
+    price,
+    seatAvailability,
+}) => {
     return (
-        <div className="card-container">
+        <div data-testid={`card-container-${index}`} className="card-container">
             <div className="od-date-container">
                 <div className="origin-dest-container ">
                     <span className="od-value">
@@ -36,6 +44,7 @@ const Card: React.FC<CardProps> = ({ origin, destination, departureDate, returnD
 
 export default Card
 interface CardProps {
+    index: number
     origin: IATA
     destination: IATA
     departureDate: string

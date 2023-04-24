@@ -19,7 +19,6 @@ function FlightSearchingApp() {
         )
     }
     const handleCallPromotionPricesApi = async (origin: IATA, destination: IATA) => {
-        console.log('i am called')
         const result = await getPromotionsPrices(origin, destination)
         filtrationProcess(result.data, origin, destination)
     }

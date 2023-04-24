@@ -23,9 +23,7 @@ const FlightSelectionForm = ({
             .catch((err) => setIsSubmitting(false))
     }
 
-    useEffect(() => {
-        firstInpRef.current?.focus()
-    }, [])
+    useEffect(() => firstInpRef.current?.focus(), [])
 
     return (
         <div className="form-container">

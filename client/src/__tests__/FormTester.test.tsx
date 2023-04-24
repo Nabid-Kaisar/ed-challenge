@@ -44,7 +44,7 @@ describe('There should be', () => {
     test(`1. origin and destination labels and input boxes.
                 2. a submit button.`, () => {
         //running setup will automatically test if the elements are rendered correctly or not
-        const { originInput, destinationInput, submitBtn } = setup()
+        const { submitBtn } = setup()
 
         //labels test
         screen.getByText('Origin')
