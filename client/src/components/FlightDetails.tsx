@@ -4,7 +4,6 @@ import { IATA } from '../models/IATAType'
 import Card from './common/Card'
 
 function FlightDetails({ details }: FlightDetailsProps) {
-    console.log('details list::', details)
     if (!details) return null
 
     return (

@@ -26,24 +26,24 @@ const FlightSelectionForm = ({
                     <Input
                         label={'Origin'}
                         type="text"
-                        id="origin"
+                        id={'origin'}
                         name="origin"
                         value={origin}
                         onChange={(event: ChangeEvent<HTMLInputElement>) => setOrigin(event.target.value)}
                         required
-                        maxlength={IATA_STRING_LENGTH}
+                        maxLength={IATA_STRING_LENGTH}
                     />
                 </div>
                 <div>
                     <Input
                         label={'Destination'}
                         type="text"
-                        id="destination"
+                        id={'destination'}
                         name="destination"
                         value={destination}
                         onChange={(event: ChangeEvent<HTMLInputElement>) => setDestination(event.target.value)}
                         required
-                        maxlength={IATA_STRING_LENGTH}
+                        maxLength={IATA_STRING_LENGTH}
                     />
                 </div>
                 <button disabled={isSubmitting} className="submit-button" type="submit">

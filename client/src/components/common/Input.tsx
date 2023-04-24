@@ -1,13 +1,13 @@
 import React from 'react'
 
-const Input = ({ label, value, onChange, error, ...props }: any) => {
+const Input = ({ label, id, value, onChange, error, ...props }: any) => {
     return (
         <div className="input-container">
-            <label htmlFor={label} className="label">
+            <label htmlFor={id} className="label">
                 {label}
             </label>
             <input
-                id={label}
+                id={id}
                 type="text"
                 value={value}
                 onChange={onChange}
