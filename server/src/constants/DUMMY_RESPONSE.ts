@@ -1,6 +1,4 @@
-import { PromotionsPriceOffersResponse } from "../../../client/src/models/PromotionsPriceOffersResponse";
-
-export const DUMMY_RESPONSE: Array<PromotionsPriceOffersResponse> = [
+export const DUMMY_RESPONSE = [
   {
     origin: "FRA",
     destination: "ROM",
@@ -9,7 +7,7 @@ export const DUMMY_RESPONSE: Array<PromotionsPriceOffersResponse> = [
     seatAvailability: 23,
     price: {
       amount: 130,
-      currency: "Euro",
+      currency: "USD",
     },
     offerType: "ExactMatch",
     uuid: `SA00003-b790715d-b2b8-4d23-ac27-d4e88c0e84af`,
@@ -28,6 +26,123 @@ export const DUMMY_RESPONSE: Array<PromotionsPriceOffersResponse> = [
     uuid: `SA00007-3a7b7681-2b15-427f-8d43-354a7efb782c`,
   },
   {
+    origin: "LHR",
+    destination: "JFK",
+    departureDate: "2023-05-15",
+    returnDate: "2023-05-23",
+    seatAvailability: 13,
+    price: {
+      amount: 400,
+      currency: "USD",
+    },
+    offerType: "LastMinute",
+    uuid: `SA00007-3a7b7681-2b15-427f-8d43-354a7efb782c`,
+  },
+  {
+    origin: "LHR",
+    destination: "JFK",
+    departureDate: "2023-05-15",
+    returnDate: "2023-05-23",
+    seatAvailability: 19,
+    price: {
+      amount: 450,
+      currency: "USD",
+    },
+    offerType: "LastMinute",
+    uuid: `SA00007-3a7b7681-2b15-427f-8d43-354a7efb782c`,
+  },
+  {
+    origin: "LHR",
+    destination: "JFK",
+    departureDate: "2023-05-15",
+    returnDate: "2023-05-23",
+    seatAvailability: 5,
+    price: {
+      amount: 430,
+      currency: "USD",
+    },
+    offerType: "LastMinute",
+    uuid: `SA00007-3a7b7681-2b15-427f-8d43-354a7efb782c`,
+  },
+  {
+    origin: "LHR",
+    destination: "JFK",
+    departureDate: "2023-05-15",
+    returnDate: "2023-05-23",
+    seatAvailability: 2,
+    price: {
+      amount: 600,
+      currency: "USD",
+    },
+    offerType: "LastMinute",
+    uuid: `SA00007-3a7b7681-2b15-427f-8d43-354a7efb782c`,
+  },
+  {
+    origin: "LHR",
+    destination: "JFK",
+    departureDate: "2023-05-15",
+    returnDate: "2023-05-23",
+    seatAvailability: 30,
+    price: {
+      amount: 550,
+      currency: "USD",
+    },
+    offerType: "LastMinute",
+    uuid: `SA00007-3a7b7681-2b15-427f-8d43-354a7efb782c`,
+  },
+  {
+    origin: "LHR",
+    destination: "JFK",
+    departureDate: "2023-05-15",
+    returnDate: "2023-05-23",
+    seatAvailability: 30,
+    price: {
+      amount: 460,
+      currency: "USD",
+    },
+    offerType: "LastMinute",
+    uuid: `SA00007-3a7b7681-2b15-427f-8d43-354a7efb782c`,
+  },
+  {
+    origin: "LHR",
+    destination: "JFK",
+    departureDate: "2023-05-15",
+    returnDate: "2023-05-23",
+    seatAvailability: 25,
+    price: {
+      amount: 540,
+      currency: "USD",
+    },
+    offerType: "LastMinute",
+    uuid: `SA00007-3a7b7681-2b15-427f-8d43-354a7efb782c`,
+  },
+  {
+    origin: "LHR",
+    destination: "JFK",
+    departureDate: "2023-05-15",
+    returnDate: "2023-05-23",
+    seatAvailability: 40,
+    price: {
+      amount: 420,
+      currency: "USD",
+    },
+    offerType: "LastMinute",
+    uuid: `SA00007-3a7b7681-2b15-427f-8d43-354a7efb782c`,
+  },
+  {
+    origin: "LHR",
+    destination: "JFK",
+    departureDate: "2023-05-15",
+    returnDate: "2023-05-23",
+    seatAvailability: 23,
+    price: {
+      amount: 410,
+      currency: "USD",
+    },
+    offerType: "LastMinute",
+    uuid: `SA00007-3a7b7681-2b15-427f-8d43-354a7efb782c`,
+  },
+  {
     origin: "CDG",
     destination: "MAD",
     departureDate: "2023-08-08",
@@ -35,7 +150,7 @@ export const DUMMY_RESPONSE: Array<PromotionsPriceOffersResponse> = [
     seatAvailability: 6,
     price: {
       amount: 120,
-      currency: "Euro",
+      currency: "USD",
     },
     offerType: "Promotion",
     uuid: `SA00012-8d23c0bf-7cde-4f27-b1a2-1d4f4f9c9cc4`,
@@ -61,7 +176,7 @@ export const DUMMY_RESPONSE: Array<PromotionsPriceOffersResponse> = [
     seatAvailability: 15,
     price: {
       amount: 100,
-      currency: "Euro",
+      currency: "USD",
     },
     offerType: "Promotion",
     uuid: `SA00028-5e23c0bf-7ade-2f27-b1a2-1d4f4f9c9cc4`,
@@ -100,7 +215,7 @@ export const DUMMY_RESPONSE: Array<PromotionsPriceOffersResponse> = [
     seatAvailability: 8,
     price: {
       amount: 120,
-      currency: "Euro",
+      currency: "USD",
     },
     offerType: "Promotion",
     uuid: `SA00034-8d23c0bf-7cde-4f27-b1a2-1d4f4f9c9cc4`,
@@ -139,7 +254,7 @@ export const DUMMY_RESPONSE: Array<PromotionsPriceOffersResponse> = [
     seatAvailability: 10,
     price: {
       amount: 200,
-      currency: "AUD",
+      currency: "USD",
     },
     offerType: "Promotion",
     uuid: `SA00037-8d23c0bf-7cde-4f27-b1a2-1d4f4f9c9cc4`,

@@ -3,7 +3,6 @@ import { PromotionsPriceOffersResponse } from '../models/PromotionsPriceOffersRe
 import Card from './common/Card'
 
 function FlightDetails({ details }: FlightDetailsProps) {
-    console.log('filteredFlightData::', details)
     if (!details) return null
 
     return (

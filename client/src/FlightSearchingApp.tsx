@@ -50,7 +50,6 @@ function FlightSearchingApp() {
         criteria: string
     ): Array<PromotionsPriceOffersResponse> => {
         if (criteria === DEFAULT) {
-            console.log('CACHED_DATA::', CACHED_DATA)
             return CACHED_DATA
         }
 

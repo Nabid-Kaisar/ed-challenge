@@ -1,12 +1,9 @@
 import React from 'react'
 
-const Select = ({ options, label, onChange, value, error }: any) => {
+const Select = ({ options, onChange, value, error }: any) => {
     return (
         <div style={{ display: 'grid' }}>
             <div className="input-container select-container">
-                {/*<label htmlFor="select-box" style={{ marginRight: '5px' }} className="label od-value">*/}
-                {/*    {label}*/}
-                {/*</label>*/}
                 <select
                     id="select-box"
                     className={`select-box input ${error ? 'error' : ''}`}
