@@ -13,9 +13,22 @@ const FlightSelectionForm = ({
 }: FlightSelectionFormProps) => {
     const [isSubmitting, setIsSubmitting] = useState(false)
     const firstInpRef = useRef<HTMLInputElement>(null)
+    const [hasOriginError, setHasOriginError] = useState<string>('')
+    const [hasDestinationError, setHasDestinationError] = useState<string>('')
+
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
-        if (!isValidFlightForm(origin, destination)) return
+        const validationObject = isValidFlightForm(origin, destination)
+        if (!validationObject.isValid) {
+            if (validationObject.origin === 'invalid') {
+                setHasOriginError('Please Enter Origin of 3 characters!')
+            } else if (validationObject.destination === 'invalid')
+                setHasDestinationError('Please Enter Destination of 3 characters!')
+            return
+        } else {
+            setHasDestinationError('')
+            setHasOriginError('')
+        }
 
         setIsSubmitting(true)
         handleCallPromotionPricesApi(origin as IATA, destination as IATA)
@@ -23,9 +36,7 @@ const FlightSelectionForm = ({
             .catch((err) => setIsSubmitting(false))
     }
 
-    useEffect(() => {
-        firstInpRef.current?.focus()
-    }, [])
+    useEffect(() => firstInpRef.current?.focus(), [])
 
     return (
         <div className="form-container">
@@ -38,6 +49,7 @@ const FlightSelectionForm = ({
                         name="origin"
                         value={origin}
                         onChange={(event: ChangeEvent<HTMLInputElement>) => setOrigin(event.target.value)}
+                        error={hasOriginError}
                         required
                         maxLength={IATA_STRING_LENGTH}
                         minLength={IATA_STRING_LENGTH}
@@ -50,6 +62,7 @@ const FlightSelectionForm = ({
                         name="destination"
                         value={destination}
                         onChange={(event: ChangeEvent<HTMLInputElement>) => setDestination(event.target.value)}
+                        error={hasDestinationError}
                         required
                         maxLength={IATA_STRING_LENGTH}
                         minLength={IATA_STRING_LENGTH}

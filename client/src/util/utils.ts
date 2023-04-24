@@ -18,7 +18,24 @@ export function convertSvrDateToUiDate(dateStr: string): string {
 
 //is valid flight search form
 export function isValidFlightForm(origin: IATA, destination: IATA) {
-    if (!origin || !destination || origin.length !== 3 || destination.length !== 3) {
-        return false
-    } else return true
+    if (!origin || origin.length !== 3 || !destination || destination.length !== 3) {
+        return {
+            isValid: false,
+            origin: 'invalid',
+            destination: 'valid',
+        }
+    } else if (!origin || origin.length !== 3) {
+        return {
+            isValid: false,
+            origin: 'invalid',
+        }
+    } else if (!destination || destination.length !== 3) {
+        return {
+            isValid: false,
+            destination: 'invalid',
+        }
+    } else
+        return {
+            isValid: true,
+        }
 }
