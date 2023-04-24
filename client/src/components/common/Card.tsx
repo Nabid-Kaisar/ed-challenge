@@ -19,25 +19,37 @@ const Card: React.FC<CardProps> = ({
                 <div className="origin-dest-container ">
                     <span className="od-value">
                         <img alt="flight starts at" src={airplane_takeoff} style={styles.icons} />
-                        <span className="city-code">{origin}</span>
+                        <span data-testid={`origin-city-code-${index}`} className="city-code">
+                            {origin}
+                        </span>
                     </span>
                     <div className="horizontal-line"> </div>
 
                     <span className="od-value">
                         <img alt="flight arrives at" src={airplane_landing} style={styles.icons} />
-                        <span className="city-code">{destination}</span>
+                        <span data-testid={`destination-city-code-${index}`} className="city-code">
+                            {destination}
+                        </span>
                     </span>
                 </div>
                 <div className="date-container ">
                     <span className="date-label">Departure Date</span>
-                    <span className="date-value">{convertSvrDateToUiDate(departureDate)}</span>
+                    <span data-testid={`departure-date-${index}`} className="date-value">
+                        {convertSvrDateToUiDate(departureDate)}
+                    </span>
                     <span className="date-label">Return Date</span>
-                    <span className="date-value">{convertSvrDateToUiDate(returnDate)}</span>
+                    <span data-testid={`return-date-${index}`} className="date-value">
+                        {convertSvrDateToUiDate(returnDate)}
+                    </span>
                 </div>
             </div>
 
-            <div className="price-container">{price}</div>
-            <div className="seat-availability-container">{seatAvailability} seats available</div>
+            <div data-testid={`price-${index}`} className="price-container">
+                {price}
+            </div>
+            <div data-testid={`seat-${index}`} className="seat-availability-container">
+                {seatAvailability} seats available
+            </div>
         </div>
     )
 }
