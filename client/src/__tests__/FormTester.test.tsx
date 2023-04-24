@@ -1,10 +1,7 @@
 import * as React from 'react'
-import { fireEvent, getByRole, render, screen } from '@testing-library/react'
+import { fireEvent, render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import FlightSelectionForm from '../forms/FlightSelectionForm'
-import Card from '../components/common/Card'
 import { IATA } from '../models/IATAType'
-import { getPromotionsPrices } from '../apis/PromotionsPriceApi'
 import FlightSearchingAppMainContent from '../components/FlightSearchingAppMainContent'
 import { PromotionsPriceOffersResponse } from '../models/PromotionsPriceOffersResponse'
 
@@ -36,6 +33,13 @@ const setup = () => {
 
     return { originInput, destinationInput, submitBtn, ...utils }
 }
+
+const userEventSetup = () => {
+    return {
+        user: userEvent.setup(),
+    }
+}
+
 describe('There should be', () => {
     test(`1. origin and destination labels and input boxes.
                 2. a submit button.`, () => {
@@ -53,29 +57,47 @@ describe('There should be', () => {
 
 describe('input mechanism and form submission', () => {
     test(`User should not be able to type without
-                String uppercase letters & max 3 digits for both origin and destination`, () => {
+                String uppercase letters & max 3 digits for both origin and destination`, async () => {
         const { originInput, destinationInput, submitBtn } = setup()
-
-        //should be initially empty string;
-        expect(originInput.textContent).toBe('')
-
-        const inputExpectedMap = [
-            { input: 'a', expected: 'A' },
-            { input: 'z', expected: 'Z' },
-            { input: 'fRa', expected: 'FRA' },
-            { input: 'sfo', expected: 'SFO' },
-            { input: 'EWR', expected: 'EWR' },
-            // { input: 'JkRRR5z', expected: 'JKR' },
-            { input: '', expected: '' },
-        ]
-
-        fireEvent.change(originInput, { target: { value: 'JkR' } })
-        expect(originInput.value).toBe('JKR')
-
-        //validation testing
-        inputExpectedMap.forEach((testCase) => {
-            fireEvent.change(originInput, { target: { value: testCase.input } })
-            expect(originInput.value).toBe(testCase.expected)
-        })
+        await testInputBoxes(originInput)
+        await testInputBoxes(destinationInput)
     })
+
+    test(`submit button does not work`)
 })
+
+const testInputBoxes = async (inpBox: HTMLElement) => {
+    //should be initially empty string;
+    expect(inpBox.textContent).toBe('')
+
+    const inputExpectedMap = [
+        { input: 'a', expected: 'A' },
+        { input: 'z', expected: 'Z' },
+        { input: 'fRa', expected: 'FRA' },
+        { input: 'sfo', expected: 'SFO' },
+        { input: 'EWR', expected: 'EWR' },
+        // { input: 'JkRRR5z', expected: 'JKR' },
+        { input: '', expected: '' },
+    ]
+
+    // let oriInput = screen.getByText('Origin')
+
+    //length validation testing
+    let user = userEventSetup().user
+
+    await user.type(inpBox, 'jKrRzA')
+    expect(inpBox).toHaveValue('JKR')
+
+    //clearing test
+    //also prepares for a new test
+    await user.clear(inpBox)
+
+    await user.type(inpBox, 'ewrrzzzzzzzzasssssdddd')
+    expect(inpBox).toHaveValue('EWR')
+
+    //validation testing
+    inputExpectedMap.forEach((testCase) => {
+        fireEvent.change(inpBox, { target: { value: testCase.input } })
+        expect(inpBox).toHaveValue(testCase.expected)
+    })
+}
