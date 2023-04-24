@@ -8,6 +8,8 @@ import Loader from './components/common/Loader'
 import { filterCriteria } from './constants/CONSTANTS'
 
 const { DEFAULT, PRICE } = filterCriteria
+//cached original response to avoid further api calling...
+let CACHED_DATA: Array<PromotionsPriceOffersResponse> = []
 
 function FlightSearchingApp() {
     const [filteredFlightData, setFilteredFlightData] = useState<Array<PromotionsPriceOffersResponse>>([])
@@ -18,15 +20,18 @@ function FlightSearchingApp() {
         setFilteredFlightData(sortFlightData([...filteredFlightData], sortBy))
     }, [sortBy])
 
-    const filtrationProcess = (details: Array<PromotionsPriceOffersResponse>, origin: IATA, destination: IATA) => {
+    const setFilterData = (details: Array<PromotionsPriceOffersResponse>, origin: IATA, destination: IATA) => {
         if (!details) {
             setFilteredFlightData([])
             return
         }
 
-        setFilteredFlightData(
-            details.filter((flight) => flight.origin === origin && flight.destination === destination)
-        )
+        setFilteredFlightData(details)
+    }
+
+    const filterDataByOrigin = (details: Array<PromotionsPriceOffersResponse>, origin: IATA, destination: IATA) => {
+        const filteredData = details.filter((flight) => flight.origin === origin && flight.destination === destination)
+        return filteredData
     }
     const handleCallPromotionPricesApi = async (origin: IATA, destination: IATA) => {
         setShowLoader(true)
@@ -34,16 +39,20 @@ function FlightSearchingApp() {
         const result = await getPromotionsPrices(origin, destination)
         // const sortedResult = sortFlightData(result.data as Array<PromotionsPriceOffersResponse>, sortBy)
         setSortBy(DEFAULT)
+        const filteredData = filterDataByOrigin(result.data, origin, destination)
+        CACHED_DATA = filteredData
         setShowLoader(false)
-
-        filtrationProcess(result.data, origin, destination)
+        setFilterData(filteredData, origin, destination)
     }
 
     const sortFlightData = (
         flights: Array<PromotionsPriceOffersResponse>,
         criteria: string
     ): Array<PromotionsPriceOffersResponse> => {
-        if (criteria === DEFAULT) return flights
+        if (criteria === DEFAULT) {
+            console.log('CACHED_DATA::', CACHED_DATA)
+            return CACHED_DATA
+        }
 
         if (criteria === PRICE) {
             flights.sort((flight1, flight2) => {
