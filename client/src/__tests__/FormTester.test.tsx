@@ -17,7 +17,7 @@ const setup = () => {
         uuid: 'SA00003-b790715d-b2b8-4d23-ac27-d4e88c0e84af',
     }
 
-    const mockHandleCallPromotionPricesApi = async (origin: IATA, destination: IATA) => {}
+    const mockHandleCallPromotionPricesApi = jest.fn(async (origin: IATA, destination: IATA) => {})
 
     const utils = render(
         <FlightSearchingAppMainContent
@@ -31,7 +31,7 @@ const setup = () => {
 
     const submitBtn = screen.getByRole('button')
 
-    return { originInput, destinationInput, submitBtn, ...utils }
+    return { originInput, destinationInput, submitBtn, mockHandleCallPromotionPricesApi, ...utils }
 }
 
 const userEventSetup = () => {
@@ -55,15 +55,38 @@ describe('There should be', () => {
     })
 })
 
-describe('input mechanism and form submission', () => {
-    test(`User should not be able to type without
+describe('input mechanism and form submissions', () => {
+    test(`User should not be able to type without-
                 String uppercase letters & max 3 digits for both origin and destination`, async () => {
-        const { originInput, destinationInput, submitBtn } = setup()
+        const { originInput, destinationInput } = setup()
+
+        //both input boxes will be checked for same type of behaviours/validations
         await testInputBoxes(originInput)
         await testInputBoxes(destinationInput)
     })
 
-    test(`submit button does not work`)
+    test(`1. submit button does not submit form without valid inputs 
+                2. submit button submits form successfully upon entering valid inputs`, async () => {
+        const { submitBtn, originInput, destinationInput, mockHandleCallPromotionPricesApi } = setup()
+        let user = userEventSetup().user
+        //initial empty strings -> does not submit
+        await user.click(submitBtn)
+        expect(mockHandleCallPromotionPricesApi).not.toHaveBeenCalled()
+
+        //assertions for only one field -> does not submit
+        await user.type(originInput, 'JKR')
+        expect(mockHandleCallPromotionPricesApi).not.toHaveBeenCalled()
+
+        //assertions for two field but invalid length-> does not submit
+        await user.type(destinationInput, 'EW')
+        await user.click(submitBtn)
+        expect(mockHandleCallPromotionPricesApi).not.toHaveBeenCalled()
+
+        //assertions for both field with valid length-> successfully submits
+        await user.type(destinationInput, 'R')
+        await user.click(submitBtn)
+        expect(mockHandleCallPromotionPricesApi).toHaveBeenCalled()
+    })
 })
 
 const testInputBoxes = async (inpBox: HTMLElement) => {
@@ -80,20 +103,23 @@ const testInputBoxes = async (inpBox: HTMLElement) => {
         { input: '', expected: '' },
     ]
 
-    // let oriInput = screen.getByText('Origin')
-
     //length validation testing
     let user = userEventSetup().user
+
+    await user.type(inpBox, "234$!0,.:'")
+    expect(inpBox).toHaveValue('')
 
     await user.type(inpBox, 'jKrRzA')
     expect(inpBox).toHaveValue('JKR')
 
-    //clearing test
+    //clearing test values
     //also prepares for a new test
     await user.clear(inpBox)
 
     await user.type(inpBox, 'ewrrzzzzzzzzasssssdddd')
     expect(inpBox).toHaveValue('EWR')
+
+    await user.clear(inpBox)
 
     //validation testing
     inputExpectedMap.forEach((testCase) => {

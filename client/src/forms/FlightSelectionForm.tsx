@@ -2,6 +2,7 @@ import React, { ChangeEvent, useState } from 'react'
 import { IATA } from '../models/IATAType'
 import Input from '../components/common/Input'
 import { IATA_STRING_LENGTH } from '../constants/CONSTANTS'
+import { isValidFlightForm } from '../util/utils'
 
 const FlightSelectionForm = ({
     handleCallPromotionPricesApi,
@@ -13,6 +14,8 @@ const FlightSelectionForm = ({
     const [isSubmitting, setIsSubmitting] = useState(false)
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
+        if (!isValidFlightForm(origin, destination)) return
+
         setIsSubmitting(true)
         handleCallPromotionPricesApi(origin as IATA, destination as IATA)
             .then((res) => setIsSubmitting(false))
@@ -32,6 +35,7 @@ const FlightSelectionForm = ({
                         onChange={(event: ChangeEvent<HTMLInputElement>) => setOrigin(event.target.value)}
                         required
                         maxLength={IATA_STRING_LENGTH}
+                        minLength={IATA_STRING_LENGTH}
                     />
                 </div>
                 <div>
@@ -44,6 +48,7 @@ const FlightSelectionForm = ({
                         onChange={(event: ChangeEvent<HTMLInputElement>) => setDestination(event.target.value)}
                         required
                         maxLength={IATA_STRING_LENGTH}
+                        minLength={IATA_STRING_LENGTH}
                     />
                 </div>
                 <button disabled={isSubmitting} className="submit-button" type="submit">
