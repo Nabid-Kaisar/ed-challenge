@@ -6,6 +6,7 @@ import FlightDetails from './FlightDetails'
 import { isAlphaChars } from '../util/utils'
 import Select from './common/Select'
 import { filterCriteria } from '../constants/CONSTANTS'
+import { NoDataFound } from './common/NoDataFound'
 
 const { DEFAULT, PRICE } = filterCriteria
 const options = [
@@ -17,6 +18,7 @@ function FlightSearchingAppMainContent({
     handleCallPromotionPricesApi,
     sortBy,
     setSortBy,
+    noDataFound,
 }: PromotionsPricesProps) {
     const [origin, setOrigin] = useState('')
     const [destination, setDestination] = useState('')
@@ -46,18 +48,18 @@ function FlightSearchingAppMainContent({
                 />
             </section>
             <section>
-                <Select
-                    options={options}
-                    value={sortBy}
-                    onChange={(e: Event) => {
-                        setSortBy((e.target as HTMLSelectElement).value)
-                    }}
-                />
+                {!noDataFound && (
+                    <Select
+                        options={options}
+                        value={sortBy}
+                        onChange={(e: Event) => {
+                            setSortBy((e.target as HTMLSelectElement).value)
+                        }}
+                    />
+                )}
             </section>
 
-            <section>
-                <FlightDetails details={filteredFlightData} />
-            </section>
+            <section>{noDataFound ? <NoDataFound /> : <FlightDetails details={filteredFlightData} />}</section>
         </>
     )
 }
@@ -69,4 +71,5 @@ interface PromotionsPricesProps {
     handleCallPromotionPricesApi: (origin: IATA, destination: IATA) => Promise<void>
     sortBy: string
     setSortBy: Dispatch<SetStateAction<string>>
+    noDataFound: boolean
 }

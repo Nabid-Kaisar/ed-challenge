@@ -92,3 +92,9 @@
         flex-wrap: wrap;
     }
 }
+
+.no-data-found {
+    display: flex;
+    justify-self: center;
+    color: var(--color-error-txt);
+}
