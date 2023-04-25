@@ -18,7 +18,7 @@ function FlightSearchingAppMainContent({
     handleCallPromotionPricesApi,
     sortBy,
     setSortBy,
-    noDataFound,
+    dataFound,
 }: PromotionsPricesProps) {
     const [origin, setOrigin] = useState('')
     const [destination, setDestination] = useState('')
@@ -48,7 +48,7 @@ function FlightSearchingAppMainContent({
                 />
             </section>
             <section>
-                {!noDataFound && (
+                {dataFound === true && (
                     <Select
                         options={options}
                         value={sortBy}
@@ -59,7 +59,7 @@ function FlightSearchingAppMainContent({
                 )}
             </section>
 
-            <section>{noDataFound ? <NoDataFound /> : <FlightDetails details={filteredFlightData} />}</section>
+            <section>{dataFound === false ? <NoDataFound /> : <FlightDetails details={filteredFlightData} />}</section>
         </>
     )
 }
@@ -71,5 +71,5 @@ interface PromotionsPricesProps {
     handleCallPromotionPricesApi: (origin: IATA, destination: IATA) => Promise<void>
     sortBy: string
     setSortBy: Dispatch<SetStateAction<string>>
-    noDataFound: boolean
+    dataFound: string | boolean
 }

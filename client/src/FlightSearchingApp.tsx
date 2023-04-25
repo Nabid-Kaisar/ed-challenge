@@ -16,7 +16,7 @@ function FlightSearchingApp() {
     const [filteredFlightData, setFilteredFlightData] = useState<Array<PromotionsPriceOffersResponse>>([])
     const [showLoader, setShowLoader] = useState(false)
     const [sortBy, setSortBy] = useState('')
-    const [noDataFound, setNoDataFound] = useState(false)
+    const [dataFound, setDataFound] = useState<string | boolean>('initial')
 
     useEffect(() => {
         setFilteredFlightData(sortFlightData([...filteredFlightData], sortBy, CACHED_DATA))
@@ -25,10 +25,10 @@ function FlightSearchingApp() {
     const setFilterData = (details: Array<PromotionsPriceOffersResponse>, origin: IATA, destination: IATA) => {
         if (!details || details.length === 0) {
             setFilteredFlightData([])
-            setNoDataFound(true)
+            setDataFound(false)
             return
         } else {
-            setNoDataFound(false)
+            setDataFound(true)
         }
 
         setFilteredFlightData(details)
@@ -41,7 +41,6 @@ function FlightSearchingApp() {
     const handleCallPromotionPricesApi = async (origin: IATA, destination: IATA) => {
         setShowLoader(true)
         //resetting as new call
-        setNoDataFound(false)
         setFilteredFlightData([])
         const result = await getPromotionsPrices(origin, destination)
         setSortBy(DEFAULT)
@@ -60,7 +59,7 @@ function FlightSearchingApp() {
                     filteredFlightData={filteredFlightData}
                     sortBy={sortBy}
                     setSortBy={setSortBy}
-                    noDataFound={noDataFound}
+                    dataFound={dataFound}
                 />
             </main>
             {showLoader ? <Loader /> : null}
