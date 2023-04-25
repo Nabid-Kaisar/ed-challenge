@@ -18,10 +18,24 @@ export function convertSvrDateToUiDate(dateStr: string): string {
 }
 
 //is valid flight search form
-export function isValidFlightForm(origin: IATA, destination: IATA) {
-    if (!origin || !destination || origin.length !== 3 || destination.length !== 3) {
-        return false
-    } else return true
+interface IsValidFlightFormRetType {
+    origin: string
+    destination: string
+    isValid?: boolean
+}
+export function isValidFlightForm(origin: IATA, destination: IATA): IsValidFlightFormRetType {
+    console.log('util fn args, origin::', origin, 'destination::', destination)
+
+    const validationObject: IsValidFlightFormRetType = {
+        origin: !origin || origin.length !== 3 ? 'invalid' : 'valid',
+        destination: !destination || destination.length !== 3 ? 'invalid' : 'valid',
+    }
+
+    if (validationObject.origin === 'valid' && validationObject.destination === 'valid') {
+        validationObject.isValid = true
+    } else validationObject.isValid = false
+
+    return validationObject
 }
 
 //all types of sorting methods goes here

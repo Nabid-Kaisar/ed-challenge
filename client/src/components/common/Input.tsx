@@ -32,7 +32,7 @@ interface InputProps {
     value: string
     name: string
     onChange: ChangeEventHandler<HTMLInputElement>
-    error?: boolean
+    error?: string
     otherProps?: any
     required: boolean
     maxLength: number

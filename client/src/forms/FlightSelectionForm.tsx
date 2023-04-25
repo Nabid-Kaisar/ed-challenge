@@ -13,17 +13,38 @@ const FlightSelectionForm = ({
 }: FlightSelectionFormProps) => {
     const [isSubmitting, setIsSubmitting] = useState(false)
     const firstInpRef = useRef<HTMLInputElement>(null)
+    const [hasOriginError, setHasOriginError] = useState<string>('')
+    const [hasDestinationError, setHasDestinationError] = useState<string>('')
+
+    useEffect(() => firstInpRef.current?.focus(), [])
+
+    const isValidForm = () => {
+        const validationObject = isValidFlightForm(origin, destination)
+        console.log('validationObject', validationObject)
+        if (!validationObject.isValid) {
+            validationObject.origin === 'invalid'
+                ? setHasOriginError('Please Enter Origin of 3 characters!')
+                : setHasOriginError('')
+            validationObject.destination === 'invalid'
+                ? setHasDestinationError('Please Enter Destination of 3 characters!')
+                : setDestination('')
+
+            return false
+        } else {
+            setHasDestinationError('')
+            setHasOriginError('')
+            return true
+        }
+    }
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
-        if (!isValidFlightForm(origin, destination)) return
+        if (!isValidForm()) return false
 
         setIsSubmitting(true)
         handleCallPromotionPricesApi(origin as IATA, destination as IATA)
             .then(() => setIsSubmitting(false))
             .catch(() => setIsSubmitting(false))
     }
-
-    useEffect(() => firstInpRef.current?.focus(), [])
 
     return (
         <div className="form-container">
@@ -39,6 +60,7 @@ const FlightSelectionForm = ({
                         required
                         maxLength={IATA_STRING_LENGTH}
                         minLength={IATA_STRING_LENGTH}
+                        error={hasOriginError}
                     />
                 </div>
                 <div>
@@ -51,6 +73,7 @@ const FlightSelectionForm = ({
                         required
                         maxLength={IATA_STRING_LENGTH}
                         minLength={IATA_STRING_LENGTH}
+                        error={hasDestinationError}
                     />
                 </div>
                 <button disabled={isSubmitting} className="submit-button" type="submit">
