@@ -14,6 +14,7 @@ const FlightSelectionForm = ({
     const [isSubmitting, setIsSubmitting] = useState(false)
     const firstInpRef = useRef<HTMLInputElement>(null)
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        console.log('submit')
         event.preventDefault()
         if (!isValidFlightForm(origin, destination)) return
 
@@ -37,8 +38,10 @@ const FlightSelectionForm = ({
                         value={origin}
                         onChange={(event: ChangeEvent<HTMLInputElement>) => setOrigin(event.target.value)}
                         required
-                        maxLength={IATA_STRING_LENGTH}
                         minLength={IATA_STRING_LENGTH}
+                        maxLength={IATA_STRING_LENGTH}
+                        pattern=".{3,3}"
+                        title="3 characters minimum"
                     />
                 </div>
                 <div>
@@ -49,8 +52,10 @@ const FlightSelectionForm = ({
                         value={destination}
                         onChange={(event: ChangeEvent<HTMLInputElement>) => setDestination(event.target.value)}
                         required
-                        maxLength={IATA_STRING_LENGTH}
                         minLength={IATA_STRING_LENGTH}
+                        maxLength={IATA_STRING_LENGTH}
+                        pattern=".{3,3}"
+                        title="3 characters minimum"
                     />
                 </div>
                 <button disabled={isSubmitting} className="submit-button" type="submit">

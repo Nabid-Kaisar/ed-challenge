@@ -1,7 +1,7 @@
 import React, { ChangeEventHandler, ForwardedRef, forwardRef } from 'react'
 
 const Input: React.FC<InputProps> = forwardRef((props, forwardedRef) => {
-    const { label, name, id, value, onChange, error, ...otherProps } = props
+    const { label, name, id, value, onChange, error, pattern, title, ...otherProps } = props
 
     return (
         <div className="input-container">
@@ -16,6 +16,8 @@ const Input: React.FC<InputProps> = forwardRef((props, forwardedRef) => {
                 name={name}
                 onChange={onChange}
                 className={`input ${error ? 'error' : ''}`}
+                title={title}
+                pattern={pattern}
                 {...otherProps}
             />
 
@@ -30,12 +32,15 @@ interface InputProps {
     label: string
     id: string
     value: string
-    name: string
+    name?: string
     onChange: ChangeEventHandler<HTMLInputElement>
     error?: boolean
     otherProps?: any
-    required: boolean
-    maxLength: number
-    minLength: number
+    required?: boolean
+    maxLength?: number
+    minLength?: number
     ref?: ForwardedRef<HTMLInputElement | null>
+    pattern?: string
+
+    title?: string
 }
