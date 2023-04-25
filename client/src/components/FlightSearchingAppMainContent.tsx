@@ -10,7 +10,7 @@ import { filterCriteria } from '../constants/CONSTANTS'
 const { DEFAULT, PRICE } = filterCriteria
 const options = [
     { value: DEFAULT, label: '---Sort By---' },
-    { value: PRICE, label: 'Price' },
+    { value: PRICE, label: 'Price low to high' },
 ]
 function FlightSearchingAppMainContent({
     filteredFlightData,

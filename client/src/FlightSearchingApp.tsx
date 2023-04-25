@@ -6,8 +6,9 @@ import { IATA } from './models/IATAType'
 import { PromotionsPriceOffersResponse } from './models/PromotionsPriceOffersResponse'
 import Loader from './components/common/Loader'
 import { filterCriteria } from './constants/CONSTANTS'
+import { sortFlightData } from './util/utils'
 
-const { DEFAULT, PRICE } = filterCriteria
+const { DEFAULT } = filterCriteria
 //cached original response to avoid further api calling...
 let CACHED_DATA: Array<PromotionsPriceOffersResponse> = []
 
@@ -17,7 +18,7 @@ function FlightSearchingApp() {
     const [sortBy, setSortBy] = useState('')
 
     useEffect(() => {
-        setFilteredFlightData(sortFlightData([...filteredFlightData], sortBy))
+        setFilteredFlightData(sortFlightData([...filteredFlightData], sortBy, CACHED_DATA))
     }, [sortBy])
 
     const setFilterData = (details: Array<PromotionsPriceOffersResponse>, origin: IATA, destination: IATA) => {
@@ -43,24 +44,6 @@ function FlightSearchingApp() {
         CACHED_DATA = filteredData
         setShowLoader(false)
         setFilterData(filteredData, origin, destination)
-    }
-
-    const sortFlightData = (
-        flights: Array<PromotionsPriceOffersResponse>,
-        criteria: string
-    ): Array<PromotionsPriceOffersResponse> => {
-        if (criteria === DEFAULT) {
-            return CACHED_DATA
-        }
-
-        if (criteria === PRICE) {
-            flights.sort((flight1, flight2) => {
-                return flight1.price.amount - flight2.price.amount
-            })
-            return flights
-        } //else if more sorting criteria can be implemented here...
-
-        return flights
     }
 
     return (

@@ -4,6 +4,9 @@ import userEvent from '@testing-library/user-event'
 import { IATA } from '../models/IATAType'
 import FlightSearchingAppMainContent from '../components/FlightSearchingAppMainContent'
 import { PromotionsPriceOffersResponse } from '../models/PromotionsPriceOffersResponse'
+import { filterCriteria } from '../constants/CONSTANTS'
+
+const { PRICE } = filterCriteria
 
 const setup = () => {
     const dummyFlightData: PromotionsPriceOffersResponse = {
@@ -23,6 +26,8 @@ const setup = () => {
         <FlightSearchingAppMainContent
             handleCallPromotionPricesApi={mockHandleCallPromotionPricesApi}
             filteredFlightData={[dummyFlightData]}
+            sortBy={PRICE}
+            setSortBy={() => {}}
         />
     )
 

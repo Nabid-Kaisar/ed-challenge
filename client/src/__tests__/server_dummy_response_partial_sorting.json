@@ -1,0 +1,132 @@
+[
+  {
+    "origin": "LHR",
+    "destination": "JFK",
+    "departureDate": "2023-05-15",
+    "returnDate": "2023-05-23",
+    "seatAvailability": 12,
+    "price": {
+      "amount": 500,
+      "currency": "USD"
+    },
+    "offerType": "LastMinute",
+    "uuid": "SA00007-3a7b7681-2b15-427f-8d43-354a7efb782c"
+  },
+  {
+    "origin": "LHR",
+    "destination": "JFK",
+    "departureDate": "2023-05-15",
+    "returnDate": "2023-05-23",
+    "seatAvailability": 13,
+    "price": {
+      "amount": 400,
+      "currency": "USD"
+    },
+    "offerType": "LastMinute",
+    "uuid": "SA00007-3a7b7681-2b15-427f-8d43-354a7efb782c"
+  },
+  {
+    "origin": "LHR",
+    "destination": "JFK",
+    "departureDate": "2023-05-15",
+    "returnDate": "2023-05-23",
+    "seatAvailability": 19,
+    "price": {
+      "amount": 450,
+      "currency": "USD"
+    },
+    "offerType": "LastMinute",
+    "uuid": "SA00007-3a7b7681-2b15-427f-8d43-354a7efb782c"
+  },
+  {
+    "origin": "LHR",
+    "destination": "JFK",
+    "departureDate": "2023-05-15",
+    "returnDate": "2023-05-23",
+    "seatAvailability": 5,
+    "price": {
+      "amount": 430,
+      "currency": "USD"
+    },
+    "offerType": "LastMinute",
+    "uuid": "SA00007-3a7b7681-2b15-427f-8d43-354a7efb782c"
+  },
+  {
+    "origin": "LHR",
+    "destination": "JFK",
+    "departureDate": "2023-05-15",
+    "returnDate": "2023-05-23",
+    "seatAvailability": 2,
+    "price": {
+      "amount": 600,
+      "currency": "USD"
+    },
+    "offerType": "LastMinute",
+    "uuid": "SA00007-3a7b7681-2b15-427f-8d43-354a7efb782c"
+  },
+  {
+    "origin": "LHR",
+    "destination": "JFK",
+    "departureDate": "2023-05-15",
+    "returnDate": "2023-05-23",
+    "seatAvailability": 30,
+    "price": {
+      "amount": 550,
+      "currency": "USD"
+    },
+    "offerType": "LastMinute",
+    "uuid": "SA00007-3a7b7681-2b15-427f-8d43-354a7efb782c"
+  },
+  {
+    "origin": "LHR",
+    "destination": "JFK",
+    "departureDate": "2023-05-15",
+    "returnDate": "2023-05-15",
+    "seatAvailability": 30,
+    "price": {
+      "amount": 550,
+      "currency": "USD"
+    },
+    "offerType": "LastMinute",
+    "uuid": "SA00007-3a7b7681-2b15-427f-8d43-354a7efb782c"
+  },
+  {
+    "origin": "LHR",
+    "destination": "JFK",
+    "departureDate": "2023-05-15",
+    "returnDate": "2023-05-23",
+    "seatAvailability": 25,
+    "price": {
+      "amount": 540,
+      "currency": "USD"
+    },
+    "offerType": "LastMinute",
+    "uuid": "SA00007-3a7b7681-2b15-427f-8d43-354a7efb782c"
+  },
+  {
+    "origin": "LHR",
+    "destination": "JFK",
+    "departureDate": "2023-05-15",
+    "returnDate": "2023-05-23",
+    "seatAvailability": 40,
+    "price": {
+      "amount": 420,
+      "currency": "USD"
+    },
+    "offerType": "LastMinute",
+    "uuid": "SA00007-3a7b7681-2b15-427f-8d43-354a7efb782c"
+  },
+  {
+    "origin": "LHR",
+    "destination": "JFK",
+    "departureDate": "2023-05-15",
+    "returnDate": "2023-05-23",
+    "seatAvailability": 23,
+    "price": {
+      "amount": 410,
+      "currency": "USD"
+    },
+    "offerType": "LastMinute",
+    "uuid": "SA00007-3a7b7681-2b15-427f-8d43-354a7efb782c"
+  }
+]

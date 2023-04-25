@@ -19,8 +19,8 @@ const FlightSelectionForm = ({
 
         setIsSubmitting(true)
         handleCallPromotionPricesApi(origin as IATA, destination as IATA)
-            .then((res) => setIsSubmitting(false))
-            .catch((err) => setIsSubmitting(false))
+            .then(() => setIsSubmitting(false))
+            .catch(() => setIsSubmitting(false))
     }
 
     useEffect(() => firstInpRef.current?.focus(), [])

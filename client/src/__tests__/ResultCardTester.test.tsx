@@ -5,6 +5,9 @@ import FlightSearchingAppMainContent from '../components/FlightSearchingAppMainC
 import { PromotionsPriceOffersResponse } from '../models/PromotionsPriceOffersResponse'
 import server_dummy_api_response from './server_dummy_response_partial.json'
 import { convertSvrDateToUiDate } from '../util/utils'
+import { filterCriteria } from '../constants/CONSTANTS'
+
+const { PRICE } = filterCriteria
 
 const setup = () => {
     const dummyApiRes = server_dummy_api_response
@@ -15,6 +18,8 @@ const setup = () => {
         <FlightSearchingAppMainContent
             handleCallPromotionPricesApi={mockHandleCallPromotionPricesApi}
             filteredFlightData={dummyApiRes as Array<PromotionsPriceOffersResponse>}
+            sortBy={PRICE}
+            setSortBy={() => {}}
         />
     )
 
