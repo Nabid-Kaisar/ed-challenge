@@ -14,7 +14,6 @@ const FlightSelectionForm = ({
     const [isSubmitting, setIsSubmitting] = useState(false)
     const firstInpRef = useRef<HTMLInputElement>(null)
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        console.log('submit')
         event.preventDefault()
         if (!isValidFlightForm(origin, destination)) return
 
