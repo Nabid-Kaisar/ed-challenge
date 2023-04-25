@@ -27,6 +27,7 @@ const setup = () => {
             handleCallPromotionPricesApi={mockHandleCallPromotionPricesApi}
             filteredFlightData={[dummyFlightData]}
             sortBy={PRICE}
+            dataFound={true}
             setSortBy={() => {}}
         />
     )

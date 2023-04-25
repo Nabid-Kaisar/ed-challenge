@@ -20,6 +20,7 @@ const setup = () => {
             filteredFlightData={dummyApiRes as Array<PromotionsPriceOffersResponse>}
             sortBy={PRICE}
             setSortBy={() => {}}
+            dataFound={true}
         />
     )
 
